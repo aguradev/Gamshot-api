@@ -1,4 +1,4 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="/public/asset/logo/logo.png" width="400" alt="Laravel Logo"></a></p>
 
 ## About Gamshot API
 Gamshot API merupakan sebuah API yang menampilkan list-list game di platform playstation dan pc. sistem pembuatan API ini hanya sederhana jadi tidak memiliki authentikasi token jadi langsung dapat digunakan, dan memungkinkan untuk membuat fitur lebih karena  dalam pengembangan
