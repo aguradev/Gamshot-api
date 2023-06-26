@@ -14,7 +14,7 @@ class GameListingsController extends Controller
      */
     public function index()
     {
-        $games = GameListings::all();
+        $games = GameListings::paginate(5);
 
         return response()->json(["data" => $games])->setStatusCode(Response::HTTP_OK);
     }
