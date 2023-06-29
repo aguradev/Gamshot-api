@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('game_listings', function (Blueprint $table) {
             $table->uuid("id")->primary();
             $table->string("title")->nullable();
+            $table->string("slug")->nullable();
             $table->longText("description")->nullable();
             $table->string("age_rating")->nullable();
             $table->string("thumbnail")->nullable();

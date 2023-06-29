@@ -14,4 +14,9 @@ class Genres extends Model
         "name",
         "description"
     ];
+
+    public function getRouteKeyName()
+    {
+        return "name";
+    }
 }

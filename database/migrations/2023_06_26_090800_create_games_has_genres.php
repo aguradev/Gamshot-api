@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('games_has_genres', function (Blueprint $table) {
-            $table->uuid("id")->primary();
+            $table->id();
             $table->foreignUuid("game_id")->references("id")->on("game_listings");
             $table->foreignUuid("genre_id")->references("id")->on("genres");
             $table->timestamps();

@@ -13,6 +13,7 @@ class GameListings extends Model
     protected $fillable = [
         "title",
         "description",
+        "slug",
         "age_rating",
         "thumbnail",
         "video_url",
@@ -22,6 +23,11 @@ class GameListings extends Model
 
     public function Genre()
     {
-        return $this->belongsToMany(Genres::class, 'games_has_genres', 'game_id', 'genre_id');
+        return $this->belongsToMany(Genres::class, 'games_has_genres', 'game_id', 'genre_id')->select("name", "description");
+    }
+
+    public function getRouteKeyName()
+    {
+        return "slug";
     }
 }
