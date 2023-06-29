@@ -18,7 +18,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::apiResource("games", GameListingsController::class);
-Route::post('games/{game}/add-genre', [GameListingsController::class, "gameStoreGenre"]);
+Route::middleware("auth:api")->group(function () {
+    Route::apiResource("games", GameListingsController::class);
+    Route::post('games/{game}/add-genre', [GameListingsController::class, "gameStoreGenre"]);
+});
+
 Route::post('user/register', RegisterController::class);
 Route::post('user/login', AuthController::class);

@@ -2,7 +2,13 @@
 
 namespace App\Exceptions;
 
+use Exception;
+use Illuminate\Auth\AuthenticationException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\Client\Response as ClientResponse;
+use Illuminate\Http\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -23,8 +29,16 @@ class Handler extends ExceptionHandler
      */
     public function register(): void
     {
-        $this->reportable(function (Throwable $e) {
-            //
+        $this->renderable(function (NotFoundHttpException  $e, $request) {
+            if ($request->wantsJson() || $request->is("api/*")) {
+                return response()->json(['message' => 'Request link dosent exists'], 404);
+            }
+        });
+
+        $this->renderable(function (AuthenticationException $e, $request) {
+            if ($request->wantsJson() || $request->is('api/*')) {
+                return response()->json(['message' => 'unAuthenticated'], 401);
+            }
         });
     }
 }
