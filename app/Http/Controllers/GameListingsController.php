@@ -101,9 +101,11 @@ class GameListingsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(GameListings $gameListings)
+    public function show(GameListings $game)
     {
-        //
+        $games = GameListings::with("genre")->whereSlug($game->slug)->first();
+
+        return response()->json(["data" => $games])->setStatusCode(Response::HTTP_OK);
     }
 
     /**
