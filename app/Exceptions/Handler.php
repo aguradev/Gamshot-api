@@ -9,6 +9,7 @@ use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Http\Client\Response as ClientResponse;
 use Illuminate\Http\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Routing\Exception\RouteNotFoundException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -31,13 +32,19 @@ class Handler extends ExceptionHandler
     {
         $this->renderable(function (NotFoundHttpException  $e, $request) {
             if ($request->wantsJson() || $request->is("api/*")) {
-                return response()->json(['message' => 'Request link dosent exists'], 404);
+                return response()->json(['message' => 'Request tidak ditemukan.', 'status_code' => Response::HTTP_NOT_FOUND], 404);
             }
         });
 
         $this->renderable(function (AuthenticationException $e, $request) {
             if ($request->wantsJson() || $request->is('api/*')) {
-                return response()->json(['message' => 'unAuthenticated'], 401);
+                return response()->json(['message' => 'Silakan login terlebih dahulu.', 'status_code' => Response::HTTP_UNAUTHORIZED], 401);
+            }
+        });
+
+        $this->renderable(function (RouteNotFoundException $e, $request) {
+            if ($request->wantsJson() || $request->is('api/*')) {
+                return response()->json(['message' => 'Route Not Found', 'status_code' => Response::HTTP_UNAUTHORIZED], 401);
             }
         });
     }

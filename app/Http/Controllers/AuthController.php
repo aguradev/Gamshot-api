@@ -15,7 +15,8 @@ class AuthController extends Controller
     {
         $request->validate([
             "username" => 'required',
-            'password' => 'required'
+            'password' => 'required',
+            'device_name' => 'required'
         ]);
 
         if (!Auth::attempt($request->only('username', 'password'))) {
@@ -28,7 +29,7 @@ class AuthController extends Controller
 
         return response()->json([
             "message" => "login successfully.",
-            "token" => "Bearer " . $user->createToken($user->username)->plainTextToken,
+            "token" => "Bearer " . $user->createToken($request->device_name)->plainTextToken,
             "user" => $user
         ])->setStatusCode(Response::HTTP_OK);
     }

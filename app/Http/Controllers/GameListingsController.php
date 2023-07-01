@@ -6,6 +6,7 @@ use App\Models\Api\GameListings;
 use App\Http\Requests\StoreGameListingsRequest;
 use App\Http\Requests\UpdateGameListingsRequest;
 use App\Models\Api\Genres;
+use App\Models\User;
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
@@ -24,6 +25,10 @@ class GameListingsController extends Controller
     public function index()
     {
         $games = GameListings::select("title", "slug", "thumbnail")->get();
+
+        $games->each(function ($item) {
+            $item["url_details"] = route("games.show", $item["slug"]);
+        });
 
         return response()->json(["data" => $games])->setStatusCode(Response::HTTP_OK);
     }
@@ -108,6 +113,31 @@ class GameListingsController extends Controller
         return response()->json(["data" => $games])->setStatusCode(Response::HTTP_OK);
     }
 
+    public function userAddFavoriteGame(Request $request, GameListings $game)
+    {
+
+
+        try {
+            $request_users = $request->user("api");
+
+            $request_users->FavoriteGames()->syncWithoutDetaching($game->id);
+
+            return response()->json([
+                "data" => [
+                    "message" => "Added Favorite!",
+                    "status_code" => Response::HTTP_CREATED
+                ]
+            ])->setStatusCode(Response::HTTP_CREATED);
+        } catch (\Throwable $th) {
+            return response([
+                "error" => [
+                    "message" => "Failed to add favorite",
+                    "status_code" => Response::HTTP_BAD_REQUEST
+                ]
+            ])->setStatusCode(Response::HTTP_BAD_REQUEST);
+        }
+    }
+
     /**
      * Show the form for editing the specified resource.
      */
@@ -115,6 +145,8 @@ class GameListingsController extends Controller
     {
         //
     }
+
+
 
     /**
      * Update the specified resource in storage.
