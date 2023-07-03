@@ -22,10 +22,8 @@ class RegisterController extends Controller
             User::create($data);
 
             return response()->json([
-                "data" => [
-                    "message" => "User Register Successfully",
-                    "status_code" => Response::HTTP_CREATED
-                ]
+                "message" => "User Register Successfully",
+                "status_code" => Response::HTTP_CREATED
             ])->setStatusCode(Response::HTTP_CREATED);
         } catch (\Throwable $th) {
             return response([

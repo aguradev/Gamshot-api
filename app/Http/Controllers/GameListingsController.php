@@ -30,7 +30,7 @@ class GameListingsController extends Controller
             $item["url_details"] = route("games.show", $item["slug"]);
         });
 
-        return response()->json(["data" => $games])->setStatusCode(Response::HTTP_OK);
+        return response()->json($games)->setStatusCode(Response::HTTP_OK);
     }
 
     /**
@@ -61,9 +61,7 @@ class GameListingsController extends Controller
             });
 
             return response()->json([
-                "data" => [
-                    "message" => "Added genre success",
-                ]
+                "message" => "Added genre success",
             ])->setStatusCode(Response::HTTP_CREATED);
         } catch (Exception $th) {
             return response([
@@ -88,10 +86,8 @@ class GameListingsController extends Controller
             $created = GameListings::create($data);
 
             return response()->json([
-                "data" => [
-                    "message" => "Data Game Success Saved",
-                    "list" => $created
-                ]
+                "message" => "Data Game Success Saved",
+                "list" => $created
             ])->setStatusCode(Response::HTTP_CREATED);
         } catch (\Throwable $th) {
             return response([
@@ -108,9 +104,9 @@ class GameListingsController extends Controller
      */
     public function show(GameListings $game)
     {
-        $games = GameListings::with("genre")->whereSlug($game->slug)->first();
+        $game->load("genre");
 
-        return response()->json(["data" => $games])->setStatusCode(Response::HTTP_OK);
+        return response()->json($game)->setStatusCode(Response::HTTP_OK);
     }
 
     public function userAddFavoriteGame(Request $request, GameListings $game)
@@ -123,10 +119,8 @@ class GameListingsController extends Controller
             $request_users->FavoriteGames()->syncWithoutDetaching($game->id);
 
             return response()->json([
-                "data" => [
-                    "message" => "Added Favorite!",
-                    "status_code" => Response::HTTP_CREATED
-                ]
+                "message" => "Added Favorite!",
+                "status_code" => Response::HTTP_CREATED
             ])->setStatusCode(Response::HTTP_CREATED);
         } catch (\Throwable $th) {
             return response([

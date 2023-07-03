@@ -11,13 +11,10 @@ class ProfileController extends Controller
 {
     public function __invoke()
     {
-
         $Users = User::with(["FavoriteGames" => function ($builder) {
             return $builder->select(["title", "thumbnail"]);
         }])->whereId(auth("api")->user()->id)->first();
 
-        return response()->json([
-            "data" => $Users,
-        ])->setStatusCode(Response::HTTP_FOUND);
+        return response()->json($Users)->setStatusCode(Response::HTTP_OK);
     }
 }
