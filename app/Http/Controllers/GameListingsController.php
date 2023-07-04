@@ -22,13 +22,15 @@ class GameListingsController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $games = GameListings::select("title", "slug", "thumbnail")->get();
+        $queryGameListings = GameListings::query();
 
-        $games->each(function ($item) {
-            $item["url_details"] = route("games.show", $item["slug"]);
+        $queryGameListings->when($request->query("limit"), function ($builder) use ($request) {
+            return $builder->take($request->query("limit"));
         });
+
+        $games = $queryGameListings->select("title", "slug", "thumbnail", "banner")->get();
 
         return response()->json($games)->setStatusCode(Response::HTTP_OK);
     }
