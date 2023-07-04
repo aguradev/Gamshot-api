@@ -18,7 +18,8 @@ class GameListings extends Model
         "thumbnail",
         "video_url",
         "publisher",
-        "platform"
+        "platform",
+        "banner"
     ];
 
     public function Genre()

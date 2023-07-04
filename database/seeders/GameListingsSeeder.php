@@ -80,6 +80,50 @@ class GameListingsSeeder extends Seeder
                 "publisher" => "Santa Monica Studio",
                 "platform" => "Playstation",
                 "banner" => "https://shorturl.at/gtEO2"
+            ],
+            [
+                "title" => "The Last of Us Part I",
+                "slug" => Str("The Last of Us Part I")->slug(),
+                "description" => "Experience the emotional storytelling and unforgettable characters of Joel and Ellie in The Last of Us, winner of over 200 Game of the Year awards and now rebuilt for PlayStation 5.",
+                "age_rating" => "Dewasa +18",
+                "thumbnail" => "https://images.igdb.com/igdb/image/upload/t_cover_big/co5xex.png",
+                "video_url" => "https://www.youtube.com/embed/WxjeV10H1F0",
+                "publisher" => "Naughty Dog",
+                "platform" => "Playstation",
+                "banner" => "https://shorturl.at/sBNQ4"
+            ],
+            [
+                "title" => "Assassin's Creed Valhalla",
+                "slug" => Str("Assassin's Creed Valhalla")->slug(),
+                "description" => "In Assassin's Creed Valhalla, become Eivor, a legendary Viking raider on a quest for glory. Explore a dynamic and beautiful open world set against the brutal backdrop of England’s Dark Ages. Raid your enemies, grow your settlement, and build your political power in the quest to earn a place among the gods in Valhalla.",
+                "age_rating" => "Dewasa +18",
+                "thumbnail" => "https://images.igdb.com/igdb/image/upload/t_cover_big/co2ed3.png",
+                "video_url" => "https://www.youtube.com/embed/ssrNcwxALS4",
+                "publisher" => "Ubisoft Montreal",
+                "platform" => "Playstation",
+                "banner" => "https://shorturl.at/iorwU"
+            ],
+            [
+                "title" => "For Honor",
+                "slug" => Str("For Honor")->slug(),
+                "description" => "Enter the chaos of war as a bold Knight, a brutal Viking, or a deadly Samurai. Play the thrilling story campaign or fight in brutal PvP modes, all on new dedicated servers. Enjoy an evolved experience with 18 Heroes, 18 maps, new PvP and ranked modes, thousands of gear items, and more.",
+                "age_rating" => "Dewasa +18",
+                "thumbnail" => "https://images.igdb.com/igdb/image/upload/t_cover_big/co1rb8.png",
+                "video_url" => "https://www.youtube.com/embed/sp3NKQlJPuo",
+                "publisher" => "Ubisoft Montreal",
+                "platform" => "PC (Microsoft windows)",
+                "banner" => "https://shorturl.at/ltyBN"
+            ],
+            [
+                "title" => "Fortnite",
+                "slug" => Str("Fortnite")->slug(),
+                "description" => "Fortnite is the completely free online game where you and your friends fight to be the last one standing in Battle Royale, join forces to make your own Creative games, or catch a live show at Party Royale.",
+                "age_rating" => "Remaja +13",
+                "thumbnail" => "https://images.igdb.com/igdb/image/upload/t_cover_big/co2ekt.png",
+                "video_url" => "https://www.youtube.com/embed/AzP22cDSo",
+                "publisher" => "Epic Games",
+                "platform" => "PC (Microsoft windows)",
+                "banner" => "https://s.yimg.com/ny/api/res/1.2/atnRgXOBhqwirl3w9SbeAQ--/YXBwaWQ9aGlnaGxhbmRlcjt3PTY0MDtoPTM2MA--/https://s.yimg.com/os/creatr-uploaded-images/2021-11/f2a85fc0-4633-11ec-addc-cf9733059a98"
             ]
         ]);
 
